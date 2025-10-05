@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Recommender</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>📚 Book Recommendation App</h1>
+
+    <!-- Filter form -->
+    <form method="POST">
+        <label>Choose genres:</label><br>
+        <input type="checkbox" name="genre" value="Fantasy"> Fantasy
+        <input type="checkbox" name="genre" value="Science Fiction"> Sci-Fi
+        <input type="checkbox" name="genre" value="Romance"> Romance
+        <input type="checkbox" name="genre" value="Classic"> Classic
+        <br><br>
+
+        <label>Search by title:</label>
+        <input type="text" name="search" placeholder="e.g. Dune">
+        <br><br>
+
+        <button type="submit">Get Recommendations</button>
+    </form>
+
+    <!-- Navigation -->
+    <a href="{{ url_for('random_book') }}"><button>🎲 Random Book</button></a>
+    <a href="{{ url_for('favorites') }}"><button>❤️ My Favorites</button></a>
+    <a href="{{ url_for('add_book') }}"><button>➕ Add Book</button></a>
+
+    {% if suggestions %}
+        <h2>Recommended Books:</h2>
+        <ul>
+        {% for book in suggestions %}
+            <li>
+                <strong>{{ book.title }}</strong> ({{ book.genre }}) ⭐ {{ book.rating }}
+                <a href="{{ url_for('favorite', book_id=book.id) }}">[Add to Favorites]</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

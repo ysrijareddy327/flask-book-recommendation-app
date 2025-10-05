@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Favorites</title>
+</head>
+<body>
+    <h1>❤️ My Favorite Books</h1>
+
+    {% if books %}
+        <ul>
+        {% for book in books %}
+            <li><strong>{{ book.title }}</strong> ({{ book.genre }}) ⭐ {{ book.rating }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No favorites yet.</p>
+    {% endif %}
+
+    <br>
+    <a href="{{ url_for('index') }}">⬅ Back to Home</a>
+</body>
+</html>

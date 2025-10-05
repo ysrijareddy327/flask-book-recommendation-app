@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Book</title>
+</head>
+<body>
+    <h1>🎲 Your Random Pick</h1>
+
+    {% if book %}
+        <p><strong>{{ book.title }}</strong> ({{ book.genre }}) ⭐ {{ book.rating }}</p>
+        <a href="{{ url_for('favorite', book_id=book.id) }}">❤️ Add to Favorites</a>
+    {% else %}
+        <p>No books in the database yet.</p>
+    {% endif %}
+
+    <br><br>
+    <a href="{{ url_for('index') }}">⬅ Back to Home</a>
+</body>
+</html>

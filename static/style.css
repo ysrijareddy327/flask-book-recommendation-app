@@ -1,0 +1,26 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("b.jpeg"); /* use relative path, no Jinja */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: yellow;
+}
+h1 {
+    color: yellow;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+button {
+    background-color: rgba(76, 175, 80, 0.8);
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    margin: 4px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+button:hover {
+    background-color: rgba(69, 160, 73, 0.9);
+}

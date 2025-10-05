@@ -20,6 +20,13 @@ button {
     margin: 4px;
     cursor: pointer;
     border-radius: 5px;
+    button {
+    width: 100%;
+    max-width: 200px;
+    padding: 10px;
+    margin: 5px 0;
+}
+
 }
 button:hover {
     background-color: rgba(69, 160, 73, 0.9);

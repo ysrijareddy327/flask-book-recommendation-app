@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, send_file
 from flask_sqlalchemy import SQLAlchemy
 import random
 import os
+import io
 
 app = Flask(__name__)
 app.secret_key = "supersecretkey"
@@ -85,6 +86,21 @@ def add_book():
         db.session.commit()
         return redirect(url_for("index"))
     return render_template("add_book.html")
+
+# ✅ Download Book Info
+@app.route("/download/<int:book_id>")
+def download_book(book_id):
+    book = Book.query.get(book_id)
+    if not book:
+        return "Book not found", 404
+
+    # Create a text file in memory
+    content = f"Title: {book.title}\nGenre: {book.genre}\nRating: {book.rating}"
+    buffer = io.BytesIO()
+    buffer.write(content.encode())
+    buffer.seek(0)
+
+    return send_file(buffer, as_attachment=True, download_name=f"{book.title}.txt", mimetype="text/plain")
 
 # Run app
 if __name__ == "__main__":

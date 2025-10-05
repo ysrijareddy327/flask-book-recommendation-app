@@ -9,7 +9,12 @@
     {% if books %}
         <ul>
         {% for book in books %}
-            <li><strong>{{ book.title }}</strong> ({{ book.genre }}) ⭐ {{ book.rating }}</li>
+            <li>
+                <strong>{{ book.title }}</strong> ({{ book.genre }}) ⭐ {{ book.rating }}
+                <a href="{{ url_for('download_book', book_id=book.id) }}">
+                    <button>📥 Download Info</button>
+                </a>
+            </li>
         {% endfor %}
         </ul>
     {% else %}
